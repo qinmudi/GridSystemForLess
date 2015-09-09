@@ -1,0 +1,133 @@
+// Grid Variables
+@num-cols: 12;
+@gutter-width: 1.5rem;
+@element-top-margin: @gutter-width/3;
+@element-bottom-margin: (@gutter-width*2)/3;
+
+// Media Query Ranges
+@small-screen-up: 601px;
+@medium-screen-up: 993px;
+@large-screen-up: 1201px;
+@small-screen: 600px;
+@medium-screen: 992px;
+@large-screen: 1200px;
+
+/*grid system*/
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+@media only screen and (min-width : @small-screen-up) {
+  .container {
+    width: 85%;
+  }
+}
+@media only screen and (min-width : @medium-screen-up) {
+  .container {
+    width: 70%;
+  }
+}
+.container .row {
+  margin-left: (-1 * @gutter-width / 2);
+  margin-right: (-1 * @gutter-width / 2);
+}
+
+.section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  &.no-pad {
+    padding: 0;
+  }
+  &.no-pad-bot {
+    padding-bottom: 0;
+  }
+  &.no-pad-top {
+    padding-top: 0;
+  }
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+
+  // Clear floating children
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .col {
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 @gutter-width / 2;
+
+    .generate-col(@num-cols);
+    .generate-offset(@num-cols);
+    
+    @media only screen and (min-width : @small-screen-up) {
+      .generate-col-m(@num-cols);
+      .generate-offset-m(@num-cols);
+    }
+    
+    @media only screen and (min-width : @medium-screen-up) {
+      .generate-col-l(@num-cols);
+      .generate-offset-l(@num-cols);
+    }
+  }
+}
+
+.generate-col(@i) when (@i > 0) {
+  .generate-col((@i - 1));
+  @perc: 100 / (@num-cols / @i)*1%;
+  &.s@{i}{
+    width: @perc;
+    margin-left: 0;
+  }
+}
+
+.generate-offset(@i) when (@i > 0) {
+  .generate-offset((@i - 1));
+  @perc: 100 / (@num-cols / @i)*1%;
+  &.offset-s@{i}{
+    margin-left: @perc;
+  }
+}
+
+.generate-col-m(@i) when (@i > 0) {
+  .generate-col-m((@i - 1));
+  @perc: 100 / (@num-cols / @i)*1%;
+  &.m@{i}{
+    width: @perc;
+    margin-left: 0;
+  }
+}
+
+.generate-offset-m(@i) when (@i > 0) {
+  .generate-offset-m((@i - 1));
+  @perc: 100 / (@num-cols / @i)*1%;
+  &.offset-m@{i}{
+    margin-left: @perc;
+  }
+}
+
+.generate-col-l(@i) when (@i > 0) {
+  .generate-col-l((@i - 1));
+  @perc: 100 / (@num-cols / @i)*1%;
+  &.l@{i}{
+    width: @perc;
+    margin-left: 0;
+  }
+}
+
+.generate-offset-l(@i) when (@i > 0) {
+  .generate-offset-l((@i - 1));
+  @perc: 100 / (@num-cols / @i)*1%;
+  &.offset-l@{i}{
+    margin-left: @perc;
+  }
+}
