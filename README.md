@@ -1,2 +1,2 @@
 # GridSystemForLess
-Gird System For Less
+栅格系统Less版
